@@ -8,12 +8,14 @@ pipeline {
                 echo 'hello'
             }
         }
-         stage ('Prompt check'){
-            steps {
-            
-                    input message: "Promote to Production?", ok: "Promote"
-                }
-            }
+         stage ('Deploy To Prod'){
+  input{
+    message "Do you want to proceed for production deployment?"
+  }
+    steps {
+                sh 'echo "Deploy into Prod"'
+
+              }
         }
         
     }
