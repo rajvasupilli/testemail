@@ -1,22 +1,20 @@
 pipeline {
     agent any
-    
 
     stages {
-        stage ('build locally'){
+        stage ('Deploy To Dev'){
             steps{
-                echo 'hello'
+                echo 'The next stage would test the manual approval process!!!'
             }
         }
-         stage ('Deploy To Prod'){
-  input{
-    message "Do you want to proceed for production deployment?"
-  }
-    steps {
-                sh 'echo "Deploy into Prod"'
-
-              }
-        }
         
+        stage ('Deploy To Prod'){
+           input{
+                message "Do you want to proceed for production deployment?"
+           }
+          steps {
+                 sh 'echo "Deploy into Prod"'
+          }
+        }
     }
 }
