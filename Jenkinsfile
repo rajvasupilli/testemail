@@ -11,7 +11,7 @@ pipeline {
         stage ('Deploy to QA'){
             steps {
                  echo 'Stage 2!!!'
-
+                  exit (1)
                 }
             }
         
