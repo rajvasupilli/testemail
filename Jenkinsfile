@@ -11,6 +11,7 @@ pipeline {
         stage ('Deploy to QA'){
             steps {
                  catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                     echo 'Stage 2'
                     sh "exit 1"
                 }
             }
