@@ -10,10 +10,10 @@ pipeline {
         
         stage ('Deploy to QA'){
             steps {
-                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                 //catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                      echo 'Stage 2'
                     sh "exit 1"
-                }
+               // }
             }
         }
          stage ('Deploy To Prod'){
