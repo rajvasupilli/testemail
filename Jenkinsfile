@@ -14,7 +14,7 @@ pipeline {
                     sh "exit 1"
                 }
             }
-        
+        }
          stage ('Deploy To Prod'){
             steps{
                 echo 'Stage 3!!!'
