@@ -4,7 +4,7 @@ node {
          mail bcc: "manidharr@gmail.com",
          body: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]\n More info at: ${env.BUILD_URL}'",
          //body: "Check the log: builds/$BUILD_NUMBER/log",
-         cc: "manidharr@gmail.com", from: 'buildadmin', 
+         cc: '', from: 'buildadmin', 
          replyTo: '', 
          subject: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
          to: 'raj.vasupilli@gmail.com'        
