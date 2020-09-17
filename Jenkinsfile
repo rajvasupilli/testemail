@@ -1,10 +1,9 @@
 node {
-    agent any
-       stage('build') {
-            steps {
+    stage('build') {
+            step {
                 sh 'echo "Test Email Functionality!!!"'
             }
-        }
+   }
     
     post {
         success {
