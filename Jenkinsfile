@@ -2,7 +2,7 @@ node {
     stage('Example') {
 
           mail bcc: "manidharr@gmail.com",
-              body: "<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>",
+              body: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]\n More info at: ${env.BUILD_URL}'",
                 cc: '', from: 'buildadmin', 
            replyTo: '', 
            subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
