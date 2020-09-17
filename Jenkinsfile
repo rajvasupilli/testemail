@@ -1,6 +1,6 @@
 node {
     stage('Send Email') {
-         mail attachLog: true, attachmentsPattern: 'generatedFile.txt',
+         emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
          bcc: "manidharr@gmail.com",
          body: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]\n More info at: ${env.BUILD_URL}'",
          cc: '', from: 'buildadmin', 
