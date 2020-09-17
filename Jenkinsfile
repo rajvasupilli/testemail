@@ -1,7 +1,7 @@
 node {
     stage('Example') {
 
-            sh 'Test groovy'
+          mail bcc: '', body: body, cc: '', from: '', replyTo: '', subject: 'Build Done', to: 'raj.vasupilli@gmail.com'
 
     }
 }
