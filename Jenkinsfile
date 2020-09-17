@@ -1,7 +1,11 @@
 node {
     stage('Example') {
 
-          mail bcc: 'manidharr@gmail.com', body: 'body', cc: '', from: 'buildadmin', replyTo: '', subject: 'Build Done', to: 'raj.vasupilli@gmail.com'
+          mail bcc: 'manidharr@gmail.com', body: '<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>',
+                cc: '', from: 'buildadmin', 
+           replyTo: '', 
+           subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                to: 'raj.vasupilli@gmail.com'
 
     }
 }
