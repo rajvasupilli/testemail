@@ -12,7 +12,7 @@ pipeline {
         success {
       emailext (
           to: 'manidharr@gmail.com',
-          cc: "raj.vasupilli@gmail.com",
+          //cc: "raj.vasupilli@gmail.com",
           subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
           replyTo: '',
           from: 'buildadmin', 
