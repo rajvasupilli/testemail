@@ -1,9 +1,14 @@
 node {
-    stage('build') {
-            step {
-                sh 'echo "Test Email Functionality!!!"'
-            }
-   }
+    stage('Example') {
+        try {
+            sh 'Test groovy'
+        }
+        catch (exc) {
+            echo 'Something failed, I should sound the klaxons!'
+            throw
+        }
+    }
+}
     
    // post {
      //   success {
@@ -17,4 +22,4 @@ node {
         //}
     //}
 
-}
+//}
