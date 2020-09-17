@@ -1,27 +1,23 @@
 pipeline {
     agent any
-
     stages {
-        stage ('Deploy To Dev'){
-            steps{
-                echo 'Stage 1'
-            }
-        }
-        
-        stage ('Deploy to QA'){
+        stage('build') {
             steps {
-                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                     echo 'Stage 2'
-                    sh "exit 1"
-                }
-            }
-        }
-         stage ('Deploy To Prod'){
-            steps{
-                echo 'Stage 3!!!'
+                sh 'echo "Test Email Functionality!!!"'
             }
         }
     }
     
- }
+    post {
+        success {
+      emailext (
+          to: 'raj.vasupilli@gmail.com',
+          subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+          body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+          recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+        )
+        }
+    }
 
+}
