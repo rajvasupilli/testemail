@@ -1,7 +1,7 @@
 node {
     stage('Example') {
 
-          mail bcc: '', body: 'body', cc: '', from: '', replyTo: '', subject: 'Build Done', to: 'raj.vasupilli@gmail.com'
+          mail bcc: 'manidharr@gmail.com', body: 'body', cc: '', from: 'buildadmin', replyTo: '', subject: 'Build Done', to: 'raj.vasupilli@gmail.com'
 
     }
 }
