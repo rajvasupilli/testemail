@@ -1,7 +1,14 @@
 node {
     stage('Send Email') {
-        sh '''pwd
-              ls -lthr'''
+        emailext attachLog: true, attachmentsPattern: 'builds/$BUILD_NUMBER/log',
+         //mail bcc: "manidharr@gmail.com",
+         //body: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]\n More info at: ${env.BUILD_URL}'",
+         body: "Check the log: builds/$BUILD_NUMBER/log",
+         //cc: "manidharr@gmail.com", 
+         from: 'buildadmin', 
+         replyTo: 'raj.vasupilli@gmail.com', 
+         subject: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+         to: 'raj.vasupilli@gmail.com'
         
     }
 }
