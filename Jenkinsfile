@@ -7,7 +7,6 @@ stage('Checkout SCM') {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'raju', url: 'https://github.com/rajvasupilli/testemail.git']]])
             }
         }
-
  }
  post {
  success {
