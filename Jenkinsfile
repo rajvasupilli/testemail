@@ -1,6 +1,6 @@
 node {
     //checkout git 'https://github.com/reiseburo/hermann.git'
-    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gitcon', url: 'https://github.com/manidhar1986/test.git']]])
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'raju', url: 'git@github.com:rajvasupilli/testemail.git']]])
     stage('Send Email') {
          emailext attachLog: true, body:
    """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
@@ -16,6 +16,6 @@ node {
  [$class: 'UpstreamComitterRecipientProvider']],
     replyTo: 'do-not-reply@company.com',
     subject: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-    to: 'manidharr@gmail.com'
+    to: 'raj.vasupilli@gmail.com'
     }
 }
