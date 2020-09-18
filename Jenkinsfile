@@ -31,8 +31,7 @@ def getChangeString() {
  def entry = entries[j]
  truncated_msg = entry.msg.take(MAX_MSG_LEN)
  
- changeString += " ${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}\n"
-     
+ changeString += " ${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}\n"     
  }
  }
 
