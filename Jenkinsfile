@@ -4,7 +4,7 @@ node {
        body: "${currentBuild.result}: ${BUILD_URL}/log",
        compressLog: true,    
        bcc: "manidharr@gmail.com",
-         body: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]\n More info at: ${env.BUILD_URL}'",
+         //body: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]\n More info at: ${env.BUILD_URL}'",
          //body: "",
          cc: '', from: 'buildadmin', 
          replyTo: '', 
