@@ -1,53 +1,21 @@
-pipeline {
- agent any
-
-  stages {
-stage('Checkout SCM') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'raju', url: 'https://github.com/rajvasupilli/testemail.git']]])
-            }
-        }
- }
- post {
- success {
- sendEmail("Successful")
- }
- failure {
- sendEmail("Failed")
- }
- }
+node {
+    //checkout git 'https://github.com/reiseburo/hermann.git'
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gitcon', url: 'https://github.com/manidhar1986/test.git']]])
+    stage('Send Email') {
+         emailext attachLog: true, body:
+   """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
+   </b></p><p>View console output at "<a href="${env.BUILD_URL}">
+   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p>
+     <p><i>(Build log is attached.)</i></p>""",
+    compressLog: true,
+    recipientProviders: [[$class: 'CulpritsRecipientProvider'],
+ [$class: 'DevelopersRecipientProvider'],
+ [$class: 'RequesterRecipientProvider'],
+ [$class: 'FailingTestSuspectsRecipientProvider'],
+ [$class: 'FirstFailingBuildSuspectsRecipientProvider'],
+ [$class: 'UpstreamComitterRecipientProvider']],
+    replyTo: 'do-not-reply@company.com',
+    subject: "Build Status: ${currentBuild.currentResult} - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+    to: 'manidharr@gmail.com'
+    }
 }
-
-@NonCPS
-def getChangeString() {
- MAX_MSG_LEN = 100
- def changeString = ""
-
- echo "Gathering SCM changes"
- def changeLogSets = currentBuild.changeSets
- for (int i = 0; i < changeLogSets.size(); i++) {
- def entries = changeLogSets[i].items
- for (int j = 0; j < entries.length; j++) {
- def entry = entries[j]
- truncated_msg = entry.msg.take(MAX_MSG_LEN)
- 
- changeString += " ${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}\n"     
- }
- }
-
- if (!changeString) {
- changeString = " - No new changes"
- }
- return changeString
-}
-
-def sendEmail(status) {
- mail (
- to: "raj.vasupilli@gmail.com",
- subject: "Build $BUILD_NUMBER - " + status + " ($JOB_NAME)",
- body: "Changes:\n " + getChangeString() + "\n\n Check console output at: $BUILD_URL/console" + "\n")
-}
-
-	
-	
-	
